@@ -18,6 +18,7 @@ import org.gradle.plugins.ide.eclipse.model.Classpath
 
 apply plugin: 'maven'
 apply plugin: 'signing'
+apply plugin: 'git-dependencies'
 
 defaultTasks 'clean', 'build', 'install'
 
@@ -43,6 +44,7 @@ buildscript {
     dependencies {
         classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
         classpath 'com.puppycrawl.tools:checkstyle:5.9'
+        classpath 'org.batcha.gradle.plugins:git-dependencies:0.2'
     }
 }
 
@@ -134,8 +136,7 @@ subprojects {
 
 project(':aeron-common') {
     dependencies {
-        compile 'uk.co.real-logic:Agrona:1.0-SNAPSHOT'
-    }
+        compile 'uk.co.real-logic:Agrona:1.0-SNAPSHOT'.ext.git = 'https://github.com/real-logic/Agrona.git'
 }
 
 project(':aeron-driver') {
